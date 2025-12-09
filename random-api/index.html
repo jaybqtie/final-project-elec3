@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random User Viewer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="card">
+        <header class="header">
+          <h1>Random User Viewer</h1>
+          <p class="sub">Fetch and display data from an API</p>
+        </header>
+
+        <div class="controls">
+          <button class="btn btn--primary" id="refresh">Get Random User</button>
+        </div>
+
+        <div class="status" id="status" aria-live="polite"></div>
+
+        <article class="profile" id="profile" hidden>
+          <img class="avatar" id="avatar" alt="" />
+          <div class="info">
+            <h2 id="name">—</h2>
+            <div class="row"><span class="k">Email</span><span class="v" id="email">—</span></div>
+            <div class="row"><span class="k">Phone</span><span class="v" id="phone">—</span></div>
+            <div class="row"><span class="k">Age</span><span class="v" id="age">—</span></div>
+            <div class="row"><span class="k">Location</span><span class="v" id="location">—</span></div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

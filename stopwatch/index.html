@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="card">
+        <header class="header">
+          <h1>Stopwatch</h1>
+          <p class="sub">Start / Pause / Reset — smooth and accurate timing</p>
+        </header>
+
+        <div class="time" id="time" aria-live="polite">00:00:00.00</div>
+
+        <div class="controls controls--2">
+          <button class="btn btn--primary" id="startPause">Start</button>
+          <button class="btn btn--danger" id="reset" disabled>Reset</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

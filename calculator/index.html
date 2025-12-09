@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="card">
+        <header class="header">
+          <h1>Calculator</h1>
+          <p class="sub">Keyboard supported: 0-9, + - * /, Enter, Backspace, Esc</p>
+        </header>
+
+        <div class="display" aria-live="polite">
+          <div class="expression" id="expression"> </div>
+          <div class="result" id="result">0</div>
+        </div>
+
+        <div class="grid" id="keys">
+          <button class="key key--fn" data-action="clear">AC</button>
+          <button class="key key--fn" data-action="sign">±</button>
+          <button class="key key--fn" data-action="percent">%</button>
+          <button class="key key--op" data-op="/">÷</button>
+
+          <button class="key" data-digit="7">7</button>
+          <button class="key" data-digit="8">8</button>
+          <button class="key" data-digit="9">9</button>
+          <button class="key key--op" data-op="*">×</button>
+
+          <button class="key" data-digit="4">4</button>
+          <button class="key" data-digit="5">5</button>
+          <button class="key" data-digit="6">6</button>
+          <button class="key key--op" data-op="-">−</button>
+
+          <button class="key" data-digit="1">1</button>
+          <button class="key" data-digit="2">2</button>
+          <button class="key" data-digit="3">3</button>
+          <button class="key key--op" data-op="+">+</button>
+
+          <button class="key key--wide" data-digit="0">0</button>
+          <button class="key" data-action="dot">.</button>
+          <button class="key key--eq" data-action="equals">=</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
