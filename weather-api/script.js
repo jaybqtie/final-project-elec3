@@ -1,4 +1,4 @@
-const API_KEY = "9c2819c41049ca5acb54bb40a6099109";
+const API_KEY = "YOUR_API_KEY_HERE";
 
 // APIs (BONUS: multiple API calls combined)
 const GEO_URL = "https://api.openweathermap.org/geo/1.0/direct";
