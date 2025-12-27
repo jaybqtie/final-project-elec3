@@ -21,61 +21,101 @@ function fmt(ms) {
 
   const h = Math.floor(totalM / 60);
 
-  const hh = String(h).padStart(2, "0");
-  const mm = String(m).padStart(2, "0");
-  const ss = String(s).padStart(2, "0");
-  const cc = String(cs).padStart(2, "0");
+  return (
+    String(h).padStart(2, "0") + ":" +
+    String(m).padStart(2, "0") + ":" +
+    String(s).padStart(2, "0") + "." +
+    String(cs).padStart(2, "0")
+  );
+}
 
-  return `${hh}:${mm}:${ss}.${cc}`;
+function render(ms) {
+  $time.textContent = fmt(ms);
 }
 
 function tick() {
+  if (!running) return; // safety
   const now = performance.now();
   const ms = elapsed + (now - startPerf);
-  $time.textContent = fmt(ms);
+  render(ms);
   rafId = requestAnimationFrame(tick);
 }
 
 function setButtons() {
   $startPause.textContent = running ? "Pause" : (elapsed > 0 ? "Resume" : "Start");
-  $reset.disabled = running ? false : (elapsed === 0);
+
+  // Reset should be usable only when NOT running and there is time to reset
+  $reset.disabled = running || elapsed === 0;
 }
 
 function start() {
   if (running) return;
   running = true;
   startPerf = performance.now();
-  rafId = requestAnimationFrame(tick);
+
+  // avoid double RAF
+  if (!rafId) rafId = requestAnimationFrame(tick);
+
   setButtons();
 }
 
 function pause() {
   if (!running) return;
   running = false;
-  cancelAnimationFrame(rafId);
+
+  if (rafId) cancelAnimationFrame(rafId);
   rafId = 0;
+
   elapsed += performance.now() - startPerf;
+  render(elapsed);
   setButtons();
 }
 
 function reset() {
-  cancelAnimationFrame(rafId);
+  if (running) return; // prevent resetting mid-run
+  if (rafId) cancelAnimationFrame(rafId);
   rafId = 0;
-  running = false;
+
   startPerf = 0;
   elapsed = 0;
-  $time.textContent = "00:00:00.00";
+  render(0);
   setButtons();
 }
 
 $startPause.addEventListener("click", () => (running ? pause() : start()));
 $reset.addEventListener("click", reset);
 
-// Keyboard shortcuts: Space = start/pause, R = reset
+// Keyboard: Space = start/pause, R = reset
 document.addEventListener("keydown", (e) => {
-  const k = e.key.toLowerCase();
-  if (k === " ") { e.preventDefault(); running ? pause() : start(); }
-  if (k === "r") reset();
+  const key = e.key;
+  const code = e.code;
+
+  const isSpace = key === " " || code === "Space";
+  if (isSpace) {
+    e.preventDefault();
+    running ? pause() : start();
+    return;
+  }
+
+  if (key.toLowerCase() === "r") {
+    reset();
+  }
 });
 
+// If the tab becomes hidden while running, keep time correct but stop heavy RAF
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && running) {
+    // convert current running time into elapsed, pause visual updates
+    elapsed += performance.now() - startPerf;
+    startPerf = performance.now();
+    render(elapsed);
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
+  } else if (!document.hidden && running && !rafId) {
+    startPerf = performance.now();
+    rafId = requestAnimationFrame(tick);
+  }
+});
+
+render(0);
 setButtons();

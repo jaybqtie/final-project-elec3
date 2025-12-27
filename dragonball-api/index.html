@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dragon Ball API Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <header class="header header-row">
+        <div>
+          <h1>🐉 Dragon Ball API Viewer</h1>
+          <p class="sub">Search, filter, sort, load more, and save favorites.</p>
+        </div>
+
+        <div class="header-actions">
+          <button id="themeToggle" class="btn btn--fn" type="button">Theme: Dark</button>
+          <button id="viewToggle" class="btn btn--fn" type="button">View: All</button>
+        </div>
+      </header>
+
+      <div class="filters">
+        <div>
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" placeholder="e.g. Goku, Vegeta, Gohan" />
+        </div>
+
+        <div>
+          <label for="raceSelect">Race</label>
+          <select id="raceSelect">
+            <option value="">Any race</option>
+            <option value="Saiyan">Saiyan</option>
+            <option value="Human">Human</option>
+            <option value="Namekian">Namekian</option>
+            <option value="Frieza Race">Frieza Race</option>
+            <option value="Android">Android</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="minKiInput">Min KI</label>
+          <input id="minKiInput" type="number" inputmode="numeric" placeholder="e.g. 1000000" />
+        </div>
+
+        <div>
+          <label for="maxKiInput">Max KI</label>
+          <input id="maxKiInput" type="number" inputmode="numeric" placeholder="e.g. 60000000" />
+        </div>
+
+        <div>
+          <label for="sortSelect">Sort</label>
+          <select id="sortSelect">
+            <option value="id-asc">ID (Asc)</option>
+            <option value="id-desc">ID (Desc)</option>
+            <option value="name-asc">Name (A–Z)</option>
+            <option value="name-desc">Name (Z–A)</option>
+            <option value="ki-desc">KI (High–Low)</option>
+            <option value="ki-asc">KI (Low–High)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="searchBtn" class="btn btn--primary" type="button">Apply</button>
+        <button id="resetBtn" class="btn btn--secondary" type="button">Reset</button>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+      <div id="errorBox" class="error-box hidden" role="alert"></div>
+      <div id="resultInfo" class="result-info"></div>
+
+      <div id="resultsContainer" class="grid"></div>
+
+      <div class="footer-actions">
+        <button id="loadMoreBtn" class="btn btn--secondary hidden" type="button">Load more</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+  <footer class="footer-credits">
+    Data from <a href="https://dragonball-api.com/api/" target="_blank" rel="noopener">Dragon Ball API</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather Now</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="brand">
+          <span class="logo">🌤️</span>
+          <h1>Weather Now</h1>
+        </div>
+        <p class="tagline">Real-time weather • 5-day forecast • Powered by OpenWeather</p>
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+
+    <!-- Search & Control Panel -->
+    <section class="control-panel">
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="cityInput"
+            placeholder="Search city or location..."
+            autocomplete="off"
+          />
+          <button id="searchBtn" class="search-btn">Search</button>
+          <div id="loadingSpinner" class="spinner hidden" aria-hidden="true" role="status" aria-live="polite">
+            <span class="visually-hidden">Loading…</span>
+          </div>
+        </div>
+
+        <button id="geoBtn" class="geo-btn" type="button" aria-label="Use current location">
+          📍 Use current location
+        </button>
+        
+        <!-- Location choices -->
+        <select id="placeSelect" class="location-select hidden" aria-label="Choose location"></select>
+
+        <!-- Units Toggle -->
+        <div class="units-control">
+          <span class="units-label">Temperature</span>
+          <div class="toggle-switch">
+            <button id="unitC" class="toggle-btn active" aria-pressed="true">°C</button>
+            <button id="unitF" class="toggle-btn" aria-pressed="false">°F</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status & Error -->
+      <div class="status-area">
+        <p id="status" class="status" aria-live="polite"></p>
+        <div id="errorBox" class="error-box hidden" role="alert"></div>
+      </div>
+
+      <!-- Recent Searches -->
+      <div id="recentSearches" class="recent-searches hidden">
+        <h3 class="recent-title">Recent Searches</h3>
+        <div id="recentList" class="recent-list"></div>
+      </div>
+    </section>
+
+    <!-- Weather Results -->
+    <section id="resultsContainer" class="results-container hidden">
+      <!-- Current Conditions Card -->
+      <div class="current-card">
+        <div class="current-header">
+          <div class="location-info">
+            <h2 id="cityName" class="city-name"></h2>
+            <p id="country" class="country-name"></p>
+          </div>
+          <img id="currentIcon" class="current-icon" alt="weather icon" />
+        </div>
+
+        <div class="current-temp">
+          <span id="temp" class="temp-large"></span>
+          <span id="tempUnit" class="temp-unit">°C</span>
+        </div>
+
+        <p id="description" class="weather-desc"></p>
+
+        <div class="weather-details">
+          <div class="detail-item">
+            <span class="detail-icon">🌡️</span>
+            <div class="detail-info">
+              <span class="detail-label">Feels Like</span>
+              <span class="detail-value"><span id="feelsLike"></span><span id="feelsUnit">°C</span></span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💧</span>
+            <div class="detail-info">
+              <span class="detail-label">Humidity</span>
+              <span class="detail-value"><span id="humidity"></span>%</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">💨</span>
+            <div class="detail-info">
+              <span class="detail-label">Wind Speed</span>
+              <span class="detail-value"><span id="wind"></span> <span id="windUnit">m/s</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forecast Card -->
+      <div class="forecast-card">
+        <h3 class="forecast-header">5-Day Forecast</h3>
+        <div id="forecastGrid" class="forecast-items"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <footer class="footer-credits">
+    Data from <a href="https://openweathermap.org/api" target="_blank" rel="noopener">OpenWeather API</a>
+  </footer>
+</body>
+</html>
